@@ -1,14 +1,16 @@
 package game;
 
-public class Arma {
+public class Arma extends Item{
     private int Tipo;
     private int AumentoFuerza;
     private int AumentoVelocidad;
     private int AumentoVida;
     private int AumentoConcentracion;
     private int AumentoDefensa;
-    public Arma(int tipo, int aumentoFuerza, int aumentoVelocidad, int aumentoVida, int aumentoConcentracion,
-            int aumentoDefensa) {
+
+    public Arma(String Nombre,int tipo, int aumentoFuerza, int aumentoVelocidad, int aumentoVida, int aumentoConcentracion,
+            int aumentoDefensa,int precio) {
+        super(precio, Nombre);
         Tipo = tipo;
         AumentoFuerza = aumentoFuerza;
         AumentoVelocidad = aumentoVelocidad;
@@ -16,6 +18,7 @@ public class Arma {
         AumentoConcentracion = aumentoConcentracion;
         AumentoDefensa = aumentoDefensa;
     }
+
     public int getTipo() {
         return Tipo;
     }

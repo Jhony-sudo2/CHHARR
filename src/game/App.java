@@ -59,86 +59,10 @@ public class App {
 		}
 	}
 	
-	static class Tienda{
-		
-		static void abrir() {
-			while(true) {
-				print("Posees "+oro+" monedas de oro\n");
-				print("1-Comprar Heroe\n");
-				print("2-Comprar Objeto\n");
-				print("0-Salir\n");
-				int op=seleccion(2);
-				switch(op) {
-					case 1:comprarHeroe();break;
-					case 2:comprarItem();break;
-					case 0:	return;
-				}
-			}
-		}
-		
-		static void comprarHeroe() {
-			if(hComprar.isEmpty()) {
-				print("Ya tienes todos los heroes\n");
-				return;
-			}
-			if(oro<200) {
-				print("No tienes suficiente oro para comprar un Heroe");
-				return;
-			}
-			mostrarhComprar();
-			print("Cada Hereo tiene un valor de 200 monedas de oro \n");
-			int op=seleccion(hComprar.size());
-			if(op==0)return;
-			else {
-				Heroe h = hComprar.get(op-1);
-				heroes.add(h);
-				hComprar.remove(h);
-				print("Se ha comprado el heroe "+h.shopping()+"\n");
-				oro-=200;
-			}
-		}
-		
-		static void comprarItem() {
-			if(items.size()>10) {
-				print("No puedes llevar mas objetos");
-				return;
-			}
-			mostrarItems();
-			int op=seleccion(3);
-			if(op==0)return;
-			Objeto i=null;
-			switch(op) {
-				case 1:i = new SemillaVida();break;
-				case 2:i = new ElixirVerde();break;
-			}
-			if(oro<i.precio) {
-				print("No tienes suficiente oro");
-				return;
-			}
-			items.add(i);
-			oro-=items.get(items.size()-1).precio;
-			print("Ha comprado con exito\n");
-		}
-		
-		public static void mostrarItems() {
-			print("1-Semilla de la vida\t50\nDescripcion: Resucita a un Heroe caido en batalla\n\n");
-			print("2-Elixir Verde\t25\nDescripcion: Restaura 50 puntos de vida sobre quien se use\n\n");
-			print("3-Capa de Movilidad\t75\nDescripcion: Te permite moverte una casilla\n\n");
-			print("0-Salir\n");
-		}
-		
-		public static void mostrarhComprar() {
-			for(int i=0;i<hComprar.size();i++) {
-				print((i+1)+"-"+hComprar.get(i).shopping()+"\n");
-			}
-			print("0-Salir\n");
-		}
-		
-	}
-	
 	public App() {
 		print("Nombre de la partida\n");
 		nombre=cin.nextLine();
+		jugador.setNombre(nombre);
 		mainMenu();
 	}
 	
@@ -155,7 +79,6 @@ public class App {
 			switch(op) {
 				case 1:iniciarPartida();break;
 				case 2:inventario();
-				case 3:Tienda.abrir();break;
 				case 4:mejoras();break;
 				case 5:demoTablero();break;
 				case 0:return;
@@ -178,7 +101,7 @@ public class App {
 	
 	public static void showItems() {
 		for(int i=0;i<items.size();i++) {
-			print((i+1)+"-"+items.get(i).nombre+"\n");
+			//print((i+1)+"-"+items.get(i).info()+"\n");
 		}
 		print("0-Salir\n");
 	}
@@ -193,7 +116,7 @@ public class App {
 	}
 	
 	public void hacerCon(Objeto i) {
-		print(i.nombre+"\n");
+		//print(i.info()+"\n");
 		print("1-Usar\n");
 		print("2-Vender\n");
 		print("0-Salir\n");
@@ -203,9 +126,9 @@ public class App {
 			usarItem(i);
 		}
 		else {
-			oro+=i.precio/2;
+			oro+=i.getPrecio()/2;
 			items.remove(i);
-			print("Objeto vendido por "+i.precio/2+" monedas de oro\n");
+			print("Objeto vendido por "+i.getPrecio()/2+" monedas de oro\n");
 		}
 		
 	}
@@ -217,7 +140,7 @@ public class App {
 		print("0-Salir\n");
 		int op=seleccion(heroes.size());
 		if(op==0)return;
-		i.usar(heroes.get(op-1));
+		//i.usar(heroes.get(op-1));
 		items.remove(i);
 	}
 	
@@ -253,7 +176,7 @@ public class App {
 	
 	public static void mostrarItems() {
 		for(int i=0;i<items.size();i++) {
-			print((i+1)+"-"+items.get(i).info()+"\n");
+			//print((i+1)+"-"+items.get(i).info()+"\n");
 		}
 		print("0-No\n");
 	}
@@ -338,17 +261,14 @@ public class App {
 			infoTurno="Descripcion del turno:\n";
 			print("TURNO: "+ turno +"\n");
 			//Si el heroe en batalla murio cambiarlo
-			boolean murio=false;
 			if(jugador.isDead()) {
-				murio=true;
 				int other = (mainHero+1)%2;
 				Heroe second = ingame[other];
-				if(second==null||second.isDead()) {
+					if(second==null||second.isDead()) {
 					loss();
 					return;					
 				}
 				else {
-					cambiarHeroe();
 					print("Tu heroe a muerto, se a cambiado a tu otro jugador\n");
 					int X=0,Y=0;
 					while(true) {
@@ -367,11 +287,6 @@ public class App {
 					ingame[mainHero].y=Y-1;
 				}
 			}
-			if(turno>0&&canChange()){
-				print("Deseas Cambiar el Heroe\n1-Si\n2-NO\n");
-				int op=seleccion(2);
-				if(op==1)cambiarHeroe();
-			}
 			if(!items.isEmpty()&&turno>0) {
 				print("Deseas usar algun objeto\n");
 				mostrarItems();
@@ -379,10 +294,6 @@ public class App {
 				if(op==0);
 				else {
 					Objeto item = items.get(op-1);
-					if(item instanceof SemillaVida) {
-						Heroe hero2 = ingame[(mainHero+1)%2];
-						if(hero2!=null)item.usar(hero2);
-					}
 					//else item.usar(hero);
 					
 					items.remove(item);
@@ -404,7 +315,6 @@ public class App {
 			switch(op) {
 				case 1:jugador.atacar();break;
 				case 2:jugador.mover();break;
-				case 3:Tienda.abrir();break;
 				case 4:mejoras();break;
 				case 0:return;
 			}
@@ -422,22 +332,6 @@ public class App {
 		}
 	}
 
-	public static boolean canChange() {
-		int other = (mainHero+1)%2;
-		if(ingame[other]==null) {
-			return false;
-		}
-		if(ingame[other].isDead()) {
-			for(int i=0;i<items.size();i++) {
-				Objeto item=items.get(i);
-				if(item instanceof SemillaVida) {
-					return true;
-				}
-			}
-			return false;
-		}
-		return true;
-	}
 	
 	public static void loss() {
 		System.out.println(App.ANSI_RED+"__________________________"+App.ANSI_RESET);
@@ -452,47 +346,9 @@ public class App {
 		System.out.println(App.ANSI_GREEN+" \\_____________________/"+App.ANSI_RESET);
 	}
 	
-	public static boolean cambiarHeroe() {
-		int other = (mainHero+1)%2;		
-		if(ingame[other]==null) {
-			print("No tienes otro heroe");
-			return false;
-		}
-		if(ingame[other].isDead()) {
-			boolean semilla=false;
-			for(int i=0;i<items.size();i++) {
-				Objeto item=items.get(i);
-				if(item instanceof SemillaVida) {
-					semilla=true;
-					item.usar(ingame[other]);
-					items.remove(item);
-					//mainHero=other;
-					break;
-				}
-			}
-			if(!semilla) {
-				print("No se puede revivir al heroe\n");
-				return true;
-			}
-			else {
-				print("Se uso una semilla vida para revivir al heroe\n");
-				return true;
-			}
-		}
-		Heroe heroe = ingame[other];
-		heroe.x=ingame[mainHero].x;
-		heroe.y=ingame[mainHero].y;
-		tablero.map[heroe.y][heroe.x]=heroe;
-		mainHero=other;
-		return true;
-		
-		
-	}
-	
 	public static void seleccionarMapa() {
 		Random n = new Random();
 		int lenght = n.nextInt(3);
-		System.out.println("EL TAMA;O SERA" + lenght);
 		switch(lenght) {
 			case 0:tablero = new Tablero(7);break;
 			case 1:tablero = new Tablero(10);break;

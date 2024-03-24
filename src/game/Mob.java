@@ -12,12 +12,15 @@ public abstract class Mob extends Entity{
 	int maxMov;
 	int damage; 
 	boolean volar;
+	Jugador jugador;
 
 	public Mob(int nivel, int vida, int concentracion, int espiritu, int experiencia, int fuerza, int defensa,
 			int velocidad, char c) {
 		super(nivel, vida, concentracion, espiritu, experiencia, fuerza, defensa, velocidad, c);
 		//TODO Auto-generated constructor stub
 	}
+
+	
 	
 
 	public void CalcularDamage(){
@@ -92,18 +95,17 @@ public abstract class Mob extends Entity{
 			y=getY()+(dy[dir]*i);
 			
 			App.print("Actualmente estoy en "+tablero.map[y][x].getClass().getSimpleName());
+			
 			Object tmp = tablero.map[y][x];
-			if(tablero.map[y][x] instanceof Tienda) {
+			if(tmp instanceof Tienda) {
 				Tienda tienda = (Tienda) tmp;
-				tienda.Atender();	
-			}
-			else if(tablero.map[y][x] instanceof Tienda) CasillaActual = 1;
-
+				tienda.Atender(jugador);	
+			} 
+			
 			moveTo(getX()+dx[dir]*(i-1),getY()+(dy[dir]*(i-1)));
 			
 		}
 			
-		
 		moveTo(x,y);		
 		return CasillaActual;
 	}
@@ -114,12 +116,9 @@ public abstract class Mob extends Entity{
 		Tablero tablero = App.tablero;
 		if(overLava)tablero.map[this.y][this.x]=new Zona(this.x,this.y);
 		else if(overAgua)tablero.map[this.y][this.x]=new Pozada(this.x,this.y);
-		else if(overArbol) {
-			tablero.map[this.y][this.x]=new Tienda(this.x,this.y,'T');
-			((Entity)tablero.map[this.y][this.x]).x=this.x;
-			((Entity)tablero.map[this.y][this.x]).y=this.y;
-		}
+		else if(overArbol) tablero.map[this.y][this.x]=new Tienda(this.x,this.y,'T');
 		else tablero.map[this.y][this.x]=new Planicie(this.x,this.y);
+
 		overLava = tablero.map[y][x] instanceof Zona;
 		overAgua = tablero.map[y][x] instanceof Pozada;
 		overArbol = tablero.map[y][x] instanceof Tienda;
