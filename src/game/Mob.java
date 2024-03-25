@@ -11,6 +11,7 @@ public abstract class Mob extends Entity{
 	int movimientos;
 	int maxMov;
 	int damage; 
+	int damagerecibido;
 	boolean volar;
 	Jugador jugador;
 
@@ -26,6 +27,11 @@ public abstract class Mob extends Entity{
 	public void CalcularDamage(){
 
 	}
+
+	public void CalcularDamageRecibido(int recibido){
+
+	}
+
 
 	public int getVida() {
 		return vida;
@@ -100,7 +106,12 @@ public abstract class Mob extends Entity{
 			if(tmp instanceof Tienda) {
 				Tienda tienda = (Tienda) tmp;
 				tienda.Atender(jugador);	
-			} 
+			}else if (tmp instanceof Zona) {
+				Zona zona = (Zona) tmp;
+				zona.IniciarPelea(jugador);
+			}else if(tmp instanceof Enemigo){
+
+			}
 			
 			moveTo(getX()+dx[dir]*(i-1),getY()+(dy[dir]*(i-1)));
 			

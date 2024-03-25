@@ -10,6 +10,10 @@ public abstract class Item {
         Nombre = nombre;
     }
 
+    public void Usar(Heroe jugadorr){
+
+    }
+
     public int getPrecio() {
         return Precio;
     }

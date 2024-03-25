@@ -23,6 +23,12 @@ public class Zona extends Terreno {
 		
 	}
 
+	public boolean IniciarPelea(Jugador jugador){
+		Manejobatalla tmp = new Manejobatalla(jugador, Lenemigos);
+		tmp.batalla();
+		return true;
+	}
+
 	public int getNivel() {
 		return Nivel;
 	}

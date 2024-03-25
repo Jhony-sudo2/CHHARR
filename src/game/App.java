@@ -63,6 +63,7 @@ public class App {
 		print("Nombre de la partida\n");
 		nombre=cin.nextLine();
 		jugador.setNombre(nombre);
+		GenerarEnemigos();
 		mainMenu();
 	}
 	
@@ -169,7 +170,7 @@ public class App {
 		jugador.x=X-1;
 		jugador.y=Y-1;
 		tablero.map[Y-1][X-1]=ingame[0];
-		GenerarEnemigos();
+		
 		tablero.generarMounstros(enemigos);
 		gameStart();
 	}
