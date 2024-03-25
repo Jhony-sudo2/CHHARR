@@ -11,6 +11,7 @@ public class Magia extends Item {
     public Magia(String nombre, int precio, int tipo) {
         super(precio, nombre);
         this.Tipo = tipo;
+        esAtaque = false;
     }
 
     @Override
