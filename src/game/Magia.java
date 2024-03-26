@@ -16,6 +16,7 @@ public class Magia extends Item {
 
     @Override
     public void Usar(Heroe jugador) {
+        
         Random n = new Random();
         switch (Tipo) {
             case 1:

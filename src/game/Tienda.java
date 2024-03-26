@@ -45,7 +45,7 @@ public class Tienda extends Terreno {
             default:
                 break;
         }
-        int op=App.seleccion(3);
+        int op=App.seleccion(10);
         if(op==0)return;
         Item i = null;
         Objeto[] tmp = jugador.getObjetos();
@@ -91,7 +91,7 @@ public class Tienda extends Terreno {
             System.out.print("No tienes suficiente oro");
             return;
         }
-        tmp[op].setCantidad(tmp[op].getCantidad() + 1);;
+        tmp[op-1].setCantidad(tmp[op-1].getCantidad() + 1);;
         Oro-=i.getPrecio();
         System.out.println("Compra con exito");
     }

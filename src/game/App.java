@@ -35,14 +35,14 @@ public class App {
 
 	public void GenerarEnemigos(){
 		enemigos[0] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 1, "DRAGON");
-		enemigos[1] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 1, "XD");
-		enemigos[2] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 1, "ABC");
-		enemigos[3] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 2, "DEF");
-		enemigos[4] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 2, "DRAGON2");
-		enemigos[5] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 2, "TIPO2");
-		enemigos[6] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 3, "TIPO3");
-		enemigos[7] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 3, "DRAGON3");
-		enemigos[8] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 3, "HADA3");
+		enemigos[1] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 1, "Cocodrilo");
+		enemigos[2] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 1, "PEKKA");
+		enemigos[3] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 2, "Thanos");
+		enemigos[4] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 2, "Eclipse");
+		enemigos[5] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 2, "Satan");
+		enemigos[6] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 3, "Cell");
+		enemigos[7] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 3, "Madara");
+		enemigos[8] = new Enemigo(1, 100, 20, 10, 20, 20, 20, 'Z', 3, "Fantasmon");
 
 	}
 

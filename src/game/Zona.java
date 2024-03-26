@@ -18,7 +18,8 @@ public class Zona extends Terreno {
 		int numero = 0;
 		for (int i = 0; i < Lenemigos.length; i++) {
 			numero = n.nextInt(8)+1;
-			Lenemigos[i] = App.enemigos[numero];
+			Enemigo tmp  = App.enemigos[numero];
+			Lenemigos[i] = new Enemigo(tmp.nivel, tmp.vida, tmp.concentracion, tmp.espiritu, tmp.Fuerza, tmp.Fuerza, tmp.Velocidad, tmp.c, tmp.getTipo(), tmp.getNombre());
 		}
 		
 	}

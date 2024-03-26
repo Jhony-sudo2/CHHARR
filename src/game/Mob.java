@@ -29,7 +29,10 @@ public abstract class Mob extends Entity{
 	}
 
 	public void CalcularDamageRecibido(int recibido){
-
+		double resta = recibido * ((double)this.Defensa/100);
+		int rec = (int) (recibido - resta);
+		this.damagerecibido = rec;
+		this.vida = this.vida -this.damagerecibido;
 	}
 
 
@@ -100,8 +103,7 @@ public abstract class Mob extends Entity{
 			x=getX()+(dx[dir]*i);
 			y=getY()+(dy[dir]*i);
 			
-			App.print("Actualmente estoy en "+tablero.map[y][x].getClass().getSimpleName());
-			
+			System.out.println("Actualmente estoy en "+tablero.map[y][x].getClass().getSimpleName());
 			Object tmp = tablero.map[y][x];
 			if(tmp instanceof Tienda) {
 				Tienda tienda = (Tienda) tmp;
@@ -109,8 +111,25 @@ public abstract class Mob extends Entity{
 			}else if (tmp instanceof Zona) {
 				Zona zona = (Zona) tmp;
 				zona.IniciarPelea(jugador);
+				if(!jugador.isDerrotado())
+					tablero.map[y][x] = new Planicie(x, y);
+				else {
+					jugador.x = 1;
+					jugador.y = 1;
+				}
 			}else if(tmp instanceof Enemigo){
-
+				Enemigo enemigo = (Enemigo) tmp;
+				Manejobatalla tmp2 = new Manejobatalla(jugador, enemigo);
+				tmp2.batalla();
+				if(!jugador.isDerrotado())
+					tablero.map[y][x] = new Planicie(x, y);
+				else {
+					jugador.x = 1;
+					jugador.y = 1;
+				}
+			}else if(tmp instanceof Pozada){
+				Pozada p = (Pozada) tmp;
+				p.Atender(jugador);
 			}
 			
 			moveTo(getX()+dx[dir]*(i-1),getY()+(dy[dir]*(i-1)));

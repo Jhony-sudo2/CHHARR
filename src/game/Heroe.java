@@ -63,8 +63,10 @@ public abstract class Heroe extends Mob {
 
 	@Override 
 	public void CalcularDamageRecibido(int recibido){
-		recibido = recibido - recibido * (this.Defensa/100);
-		this.damagerecibido = recibido;
+		double resta = recibido * ((double)this.Defensa/100);
+		int rec = (int) (recibido - resta);
+		this.damagerecibido = rec;
+		this.vida = this.vida -this.damagerecibido;
 	}
 
 
@@ -93,8 +95,9 @@ public abstract class Heroe extends Mob {
 		return trabajo;
 	}
 
-	public void setTrabajo(Trabajo[] trabajo) {
-		this.trabajo = trabajo;
+	public void setTrabajo(Trabajo trabajo,int posicion) {
+		this.trabajo[posicion] = trabajo;
+		this.trabajoAcutal = this.trabajo[posicion];
 	}
 
 	public Arma getArma() {

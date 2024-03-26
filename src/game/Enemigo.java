@@ -27,8 +27,10 @@ public class Enemigo extends Mob {
 	
 	@Override 
 	public void CalcularDamageRecibido(int recibido){
-		recibido = recibido - recibido * (this.Defensa/100);
-		this.damagerecibido = recibido;
+		double resta = recibido * ((double)this.Defensa/100);
+		int rec = (int) (recibido - resta);
+		this.damagerecibido = rec;
+		this.vida = this.vida -this.damagerecibido;
 	}
 
 	public int getTipo() {

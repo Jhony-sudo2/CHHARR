@@ -28,7 +28,8 @@ public class Objeto extends Item {
 
 			/*DESPUES */
 			case 4:
-				jugador.Velocidad += n.nextInt(10, 20);
+				int aumento = n.nextInt(10, 20);
+				jugador.Velocidad += aumento;
 				break;
 
 			case 5:

@@ -19,27 +19,18 @@ public class Tablero {
 
 	public Tablero(int T) {
 		App.enemy.clear();
-		if(T==7) {
+		if(T==7) 
 			width=height=7;
-			porPlanicie=50;
-			porTienda=1;
-			porCiudad=10;
-			porZona=30;
-		}
-		else if(T==10) {
-			width=height=10;
-			porPlanicie=50;
-			porTienda=2;
-			porCiudad=10;
-			porZona=30;
-		}
-		else if(T==12) {
+		else if(T==10) 
+			width=height=10;	
+		else if(T==12) 
 			width=height=12;
-			porPlanicie=50;
-			porTienda=3;
-			porCiudad=10;
-			porZona=30;
-		}
+
+		porPlanicie=70;
+		porTienda=3;
+		porCiudad=5;
+		porZona=5;
+
 		generar();
 	}
 
@@ -61,7 +52,7 @@ public class Tablero {
 		Random rand = new Random();
 		for(int i=0;i<height;i++) {
 			for(int j=0;j<width;j++) {
-				int n=rand.nextInt(porTienda+porCiudad+porZona);
+				int n=rand.nextInt(porTienda+porCiudad+porZona+porPlanicie);
 				if(n<porTienda)map[i][j]=new Tienda(i,j,'T');
 				else if(n>=porTienda&&n<porTienda+porCiudad) {
 					if(i==0||i==height-1||j==0||j==width-1) {
@@ -144,15 +135,10 @@ public class Tablero {
 					if(can==0)return;
 					if(map[i][j] instanceof Planicie) {
 						if(rand.nextInt(101)<20) {
-							int t=rand.nextInt()%5;
+							int t=rand.nextInt(9);
 							Enemigo e=null;
-							switch(t) {
-								case 0:e = listaEnemigos[0]; break;
-								case 1:e =listaEnemigos[1]; break;
-								case 2:e = listaEnemigos[2]; break;
-								case 3:e = listaEnemigos[3];
-								default:e =listaEnemigos[4]; break;
-							}
+							Enemigo tmpEnemigo = listaEnemigos[t];
+							e = new Enemigo(tmpEnemigo.nivel, tmpEnemigo.vida, tmpEnemigo.concentracion, tmpEnemigo.espiritu, tmpEnemigo.Fuerza, tmpEnemigo.Fuerza, tmpEnemigo.Velocidad, tmpEnemigo.c, tmpEnemigo.getTipo(), tmpEnemigo.getNombre());
 							e.x=j;
 							e.y=i;
 							map[i][j]=e;	

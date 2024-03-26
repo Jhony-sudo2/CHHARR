@@ -1,6 +1,7 @@
 package game;
 
 public class Trabajo {
+    private String Nombre;
     private int AumentoFuerza;
     private int AumentoVelocidad;
     private int AumentoDefensa;
@@ -9,7 +10,7 @@ public class Trabajo {
     private int CampoAumento;
     private int Valor;
     public Trabajo(int aumentoFuerza, int aumentoVelocidad, int aumentoDefensa, int especialidad, int campoAumento,
-            int valor,int aumentoVida) {
+            int valor,int aumentoVida,String Nombre) {
         AumentoFuerza = aumentoFuerza;
         AumentoVelocidad = aumentoVelocidad;
         AumentoDefensa = aumentoDefensa;
@@ -17,6 +18,7 @@ public class Trabajo {
         CampoAumento = campoAumento;
         Valor = valor;
         AumentoVida = aumentoVida;
+        this.Nombre = Nombre;
     }
 
     
@@ -68,6 +70,12 @@ public class Trabajo {
 
     public void setAumentoVida(int aumentoVida) {
         AumentoVida = aumentoVida;
+    }
+
+
+
+    public String getNombre() {
+        return Nombre;
     }
 
     

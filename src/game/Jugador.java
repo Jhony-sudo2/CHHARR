@@ -7,14 +7,20 @@ public class Jugador extends Mob{
     private Arma[] Armas = new Arma[5];
     private Objeto[] objetos = new Objeto[6];
     private Magia[] Magias = new Magia[10];
+    private boolean derrotado = false;
 
     public Jugador() {
         super(100, 100, 20, 20, 10, 20, 20, 15, '@');
         Oro = 1000;
         heroes[0] = new Vaan();
+        heroes[0].setTrabajo(new Trabajo(20,10,20,1,20,1,20,"Mago"),0);
         heroes[1] = new Celes();
+        heroes[1].setTrabajo(new Trabajo(20,10,20,1,20,1,20,"Ninja"),0);
         heroes[2] = new Rydia();
+        heroes[2].setTrabajo(new Trabajo(20,10,20,1,20,1,20,"Herrero"),0);
         heroes[3] = new Locke();
+        heroes[3].setTrabajo(new Trabajo(20,10,20,1,20,1,20,"Trabajo"),0);
+        
         this.jugador = this;
         Llenar();
     }
@@ -43,6 +49,15 @@ public class Jugador extends Mob{
         Magias[7] = new Magia("Rayo", 30,8);
         Magias[8] = new Magia("Veneno", 60,9);
         Magias[9] = new Magia("Meteoro", 90,10);
+    }
+
+    
+    public boolean isDerrotado() {
+        return derrotado;
+    }
+
+    public void setDerrotado(boolean derrotado) {
+        this.derrotado = derrotado;
     }
 
     public boolean isDead(){
