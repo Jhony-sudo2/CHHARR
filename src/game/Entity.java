@@ -36,12 +36,6 @@ public abstract class Entity extends java.lang.Object{
 	public void die() {
 		if(!isDead())return;
 		App.tablero.map[y][x]=null;
-		for(Enemigo i:App.enemy) {
-			if(i==this) {
-				App.enemy.remove(i);
-				break;
-			}
-		}
 		if(overLava)App.tablero.map[y][x] = new Zona(x,y);
 		else if(overAgua)App.tablero.map[y][x] = new Pozada(x,y);
 		else if(overArbol) {

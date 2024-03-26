@@ -42,6 +42,9 @@ public class Tienda extends Terreno {
             case 3:
                 mostrarMagias();
                 break;
+            case 4:
+                VenderItem();
+                break;
             default:
                 break;
         }
@@ -136,6 +139,38 @@ public class Tienda extends Terreno {
         System.out.println("0. Cancelar");
         
     }
-
-
+public void VenderItem() {
+       while (true) {
+        Objeto[] inventario = jugador.getObjetos();
+        System.out.println("Inventario:");
+        for (int i = 0; i < inventario.length; i++) {
+            Objeto objeto = inventario[i];
+            if (objeto != null && objeto.getCantidad() > 0) {
+                System.out.println((i + 1) + ". " + objeto.getNombre() + " - Cantidad: " + objeto.getCantidad());
+            }
+        }
+        System.out.println("Seleccione el objeto a vender (0 para regresar al tablero):");
+        int opcion = n.nextInt();
+        if (opcion == 0) {
+            // Regresar al tablero
+            return;
+        }
+        if (opcion < 1 || opcion > inventario.length || inventario[opcion - 1] == null) {
+            System.out.println("Selección inválida.");
+            continue; // Continuar solicitando al jugador que seleccione un objeto válido
+        }
+        Objeto objetoVendido = inventario[opcion - 1];
+        if (objetoVendido.getCantidad() <= 0) {
+            System.out.println("No tienes este objeto para vender.");
+            continue; // Continuar solicitando al jugador que seleccione un objeto válido
+        }
+        // Agregar el valor al oro del jugador
+        Oro += 50;
+        jugador.setOro(Oro);
+        // Reducir la cantidad del objeto en el inventario del jugador
+        objetoVendido.setCantidad(objetoVendido.getCantidad() - 1);
+        System.out.println("Has vendido " + objetoVendido.getNombre());
+        Atender(jugador);
+        }
+    }
 }
