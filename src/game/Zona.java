@@ -8,7 +8,7 @@ public class Zona extends Terreno {
 	Random n = new Random();
 		
 	public Zona(int x, int y) {
-		super(x, y,'+');
+		super(x, y,'Z');
 		this.Nivel = n.nextInt(2) + 1;
 		LlenarEnemigos();
 		// TODO Auto-generated constructor stub

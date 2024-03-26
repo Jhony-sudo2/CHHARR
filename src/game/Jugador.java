@@ -114,21 +114,4 @@ public class Jugador extends Mob{
             n--;
         } while (intercambiado);
     }
-
-    @Override
-    public boolean atacar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atacar'");
-    }
-
-    @Override
-    public boolean noHit() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'noHit'");
-    }
-
-    
-    
-
-
 }

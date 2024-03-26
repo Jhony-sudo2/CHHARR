@@ -60,19 +60,7 @@ public abstract class Mob extends Entity{
 		this.movimientos=maxMov;
 	}
 	
-	public abstract boolean atacar();
-	
-	public abstract boolean noHit();
-	
-	public void hit(Entity m) {
-		if(noHit()) {
-			App.infoTurno+=info()+"ha fallado el ataque contra "+m.info()+"\n";
-			return;
-		}
-		m.vida-=this.damage;
-		App.infoTurno+=m.info()+"ha recibido "+this.damage+" de danno de "+info();
-		m.die();
-	}
+	//public abstract boolean noHit();
 
 	public int mover() {
 		int CasillaActual = 0;
@@ -80,18 +68,18 @@ public abstract class Mob extends Entity{
 		int dir=0;
 		Scanner cin = new Scanner(System.in);
 							
-		System.out.println("En que direccion deseas moverte\nU-arriba\nR-derecha\nD-abajo\nL-izquierda");
+		System.out.println("En que direccion deseas moverte\nW-arriba\nD-derecha\nS-abajo\nA-izquierda");
 		char c=cin.next().charAt(0);
 		int k=1;		
 		switch(c) {
-		 case 'U':dir=6;break;
-		 case 'u':dir=6;break;
-		 case 'R':dir=0; break;
-		 case 'r':dir=0; break;
-		 case 'D':dir=2; break;
-		 case 'd':dir=2; break;
-		 case 'L':dir=4; break;
-		 case 'l':dir=4; break;
+		 case 'W':dir=6;break;
+		 case 'w':dir=6;break;
+		 case 'D':dir=0; break;
+		 case 'd':dir=0; break;
+		 case 'S':dir=2; break;
+		 case 's':dir=2; break;
+		 case 'A':dir=4; break;
+		 case 'a':dir=4; break;
 		 default : return 0;
 		}
 		
@@ -142,7 +130,6 @@ public abstract class Mob extends Entity{
 	
 	public void moveTo(int x,int y) {
 		if(x==getX()&&y==getY())return;
-		App.infoTurno+=this.info()+"se ha movida a la posicion ["+(x+1)+","+(y+1)+"]\n";
 		Tablero tablero = App.tablero;
 		if(overLava)tablero.map[this.y][this.x]=new Zona(this.x,this.y);
 		else if(overAgua)tablero.map[this.y][this.x]=new Pozada(this.x,this.y);

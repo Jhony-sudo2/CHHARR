@@ -1,21 +1,36 @@
 package game;
 import java.util.Random;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Manejobatalla {
     private Jugador jugador;
     private Enemigo[] enemigos;
     private Enemigo enemigo;
+    
+   // Variables para llevar el registro de daño y muertes por héroe
+    private int[] danoHechoPorHeroe;
+    private int[] vecesMuertoPorHeroe;
+    private Map<String, Integer> enemigosDerrotadosPorTipo;
 
     public Manejobatalla(Jugador jugador, Enemigo enemigo) {
         this.jugador = jugador;
         this.enemigo = enemigo;
         this.enemigos = new Enemigo[1];
         this.enemigos[0] = enemigo;
+        inicializarContadores();
     }
 
     public Manejobatalla(Jugador jugador, Enemigo[] enemigos) {
         this.jugador = jugador;
         this.enemigos = enemigos;
+        inicializarContadores();
+    }
+    // Método para inicializar los contadores para llevar el registro de daño y muertes por héroe
+    private void inicializarContadores() {
+        danoHechoPorHeroe = new int[jugador.getHeroes().length];
+        vecesMuertoPorHeroe = new int[jugador.getHeroes().length];
+        enemigosDerrotadosPorTipo = new HashMap<>();
     }
 
     public void batalla() {
@@ -201,6 +216,38 @@ public class Manejobatalla {
         System.out.println("------------PERDISTE --------------");
         return true;
     }
+    
+     private void actualizarDanoHechoPorHeroe(int indiceHeroe, int dano) {
+        danoHechoPorHeroe[indiceHeroe] += dano;
+    }
 
+    // Método para actualizar el registro de muertes por héroe
+    private void actualizarVecesMuertoPorHeroe(int indiceHeroe) {
+        vecesMuertoPorHeroe[indiceHeroe]++;
+    }
+
+    // Método para actualizar la cantidad de enemigos derrotados por tipo
+    private void actualizarEnemigosDerrotadosPorTipo(String tipoEnemigo) {
+        enemigosDerrotadosPorTipo.put(tipoEnemigo, enemigosDerrotadosPorTipo.getOrDefault(tipoEnemigo, 0) + 1);
+    }
+
+    // Método para mostrar todas las estadísticas
+    public void mostrarEstadisticas() {
+        // Estadísticas de daño y muertes por héroe
+        System.out.println("Estadísticas de la batalla:");
+        for (int i = 0; i < jugador.getHeroes().length; i++) {
+            Heroe heroe = jugador.getHeroes()[i];
+            System.out.println("Heroe: " + heroe.getClass().getSimpleName());
+            System.out.println("Daño hecho: " + danoHechoPorHeroe[i]);
+            System.out.println("Veces muerto: " + vecesMuertoPorHeroe[i]);
+            System.out.println("--------------------------");
+        }
+
+        // Estadísticas de enemigos derrotados por tipo
+        System.out.println("Enemigos derrotados por tipo:");
+        for (Map.Entry<String, Integer> entry : enemigosDerrotadosPorTipo.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
 
 }

@@ -21,7 +21,8 @@ public abstract class Entity extends java.lang.Object{
 
 	
 	public Entity(int nivel, int vida, int concentracion, int espiritu, int experiencia, int fuerza, int defensa,
-			int velocidad, char c) {
+			int velocidad,char c) {
+                this.c=c;
 		this.nivel = nivel;
 		this.vida = vida;
 		this.concentracion = concentracion;
@@ -30,7 +31,6 @@ public abstract class Entity extends java.lang.Object{
 		Fuerza = fuerza;
 		Defensa = defensa;
 		Velocidad = velocidad;
-		this.c = c;
 	}
 	
 	public void die() {
@@ -44,8 +44,6 @@ public abstract class Entity extends java.lang.Object{
 			((Entity)App.tablero.map[y][x]).y=y;
 		}
 		else App.tablero.map[y][x] = new Planicie(x,y);
-		App.infoTurno+=this.getClass().getSimpleName()+" en ["+(x+1)+","+(y+1)+"] ha desaparecido\n";
-		App.infoTurno+="El terreno ["+(x+1)+","+(y+1)+"] a cambiado a " + App.tablero.map[y][x].getClass().getSimpleName()+"\n";
 	}
 	
 	public String info() {

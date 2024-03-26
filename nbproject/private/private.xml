@@ -5,12 +5,25 @@
         <group>
             <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Tienda.java</file>
             <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Mob.java</file>
+            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Planicie.java</file>
             <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Entity.java</file>
-            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Arma.java</file>
+            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Vaan.java</file>
             <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Ciudad.java</file>
+            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Magia.java</file>
             <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/App.java</file>
             <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Terreno.java</file>
+            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Locke.java</file>
             <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Tablero.java</file>
+            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Jugador.java</file>
+            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Enemigo.java</file>
+            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Celes.java</file>
+            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Heroe.java</file>
+            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Rydia.java</file>
+            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Zona.java</file>
+            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Arma.java</file>
+            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Item.java</file>
+            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Manejobatalla.java</file>
+            <file>file:/C:/Users/SAMSCLUB/Desktop/CHHARR/src/game/Pozada.java</file>
         </group>
     </open-files>
 </project-private>

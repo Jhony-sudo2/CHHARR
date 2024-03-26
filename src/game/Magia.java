@@ -7,6 +7,8 @@ public class Magia extends Item {
     private int Tipo;
     private int Turnos;
     private boolean esAtaque = false;
+      // Contadores para cada tipo de magia
+    private static int[] contadoresMagia = new int[11]; // 11 tipos de magia (del 1 al 10)
 
     public Magia(String nombre, int precio, int tipo) {
         super(precio, nombre);
@@ -16,7 +18,8 @@ public class Magia extends Item {
 
     @Override
     public void Usar(Heroe jugador) {
-        
+        // Incrementar contador de la magia usada
+        contadoresMagia[Tipo]++;
         Random n = new Random();
         switch (Tipo) {
             case 1:
@@ -69,6 +72,15 @@ public class Magia extends Item {
             default:
                 break;
         }
+    }
+     public static void mostrarContadoresMagia() {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println("Magia tipo " + i + ": " + contadoresMagia[i] + " veces utilizada.");
+        }
+    }
+     
+    public static int[] getContadoresMagia() {
+        return contadoresMagia;
     }
 
     public int getPuntos() {
